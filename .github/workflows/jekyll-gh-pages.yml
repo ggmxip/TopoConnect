@@ -40,8 +40,7 @@ jobs:
 
       - name: Copy Static Files
         run: |
-          mkdir -p ./_site/static
-          cp -r ./static/* ./_site/static/ || true
+          cp -r ./static/* ./_site/ || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
