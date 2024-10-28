@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce268046-e376-4a5c-a2b6-64ac057e5e59" name="Changes" comment="Creation of project x2" />
+    <list default="true" id="ce268046-e376-4a5c-a2b6-64ac057e5e59" name="Changes" comment="fianl upload" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -135,7 +135,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730122425256</updated>
-      <workItem from="1730122426594" duration="12843000" />
+      <workItem from="1730122426594" duration="13245000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of project">
       <option name="closed" value="true" />
@@ -161,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730137922350</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fianl upload">
+      <option name="closed" value="true" />
+      <created>1730137968229</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730137968229</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +189,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creation of project" />
     <MESSAGE value="Creation of project x2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation of project x2" />
+    <MESSAGE value="fianl upload" />
+    <option name="LAST_COMMIT_MESSAGE" value="fianl upload" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TopoConnect$app.coverage" NAME="app Coverage Results" MODIFIED="1730130993708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
