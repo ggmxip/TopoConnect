@@ -35,6 +35,10 @@ jobs:
         with:
           source: ./templates
           destination: ./_site
+      - name: Copy Static Files
+        run: |
+          mkdir -p ./_site/static
+          cp -r ./static/* ./_site/static/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
