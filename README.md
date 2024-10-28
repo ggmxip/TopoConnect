@@ -10,7 +10,7 @@ Welcome to the **TopoConnect Playground**! This interactive web application allo
 
 ## Technologies Used
 
-- [Streamlit](https://streamlit.io/) - A Python library for creating web applications.
+- [Flask](https://flask.palletsprojects.com/en/stable/) - A Python library for creating web applications.
 - [Cytoscape.js](https://js.cytoscape.org/) - A JavaScript library for graph theory modeling.
 
 ## Installation
