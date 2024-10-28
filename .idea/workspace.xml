@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ce268046-e376-4a5c-a2b6-64ac057e5e59" name="Changes" comment="Changed a bit of ReamME" />
+    <list default="true" id="ce268046-e376-4a5c-a2b6-64ac057e5e59" name="Changes" comment="revert to flask lol" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +73,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -82,7 +82,7 @@
       <recent name="C:\Users\Aditya HP\PycharmProjects\TopoConnect" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.TopoConnect">
+  <component name="RunManager" selected="Python.app">
     <configuration name="TopoConnect" type="PythonConfigurationType" factoryName="Python">
       <module name="TopoConnect" />
       <option name="ENV_FILES" value="" />
@@ -211,7 +211,7 @@
       <workItem from="1730138783379" duration="386000" />
       <workItem from="1730139636335" duration="117000" />
       <workItem from="1730139780416" duration="51000" />
-      <workItem from="1730140462259" duration="138000" />
+      <workItem from="1730140440900" duration="1840000" />
     </task>
     <task id="LOCAL-00001" summary="Creation of project">
       <option name="closed" value="true" />
@@ -261,7 +261,31 @@
       <option name="project" value="LOCAL" />
       <updated>1730139036884</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changes REadME">
+      <option name="closed" value="true" />
+      <created>1730140623005</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730140623005</updated>
+    </task>
+    <task id="LOCAL-00008" summary="change to streamlit">
+      <option name="closed" value="true" />
+      <created>1730141888475</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730141888475</updated>
+    </task>
+    <task id="LOCAL-00009" summary="revert to flask lol">
+      <option name="closed" value="true" />
+      <created>1730142054613</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1730142054613</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,12 +308,15 @@
     <MESSAGE value="fianl upload" />
     <MESSAGE value="Added README.md" />
     <MESSAGE value="idk random" />
-    <option name="LAST_COMMIT_MESSAGE" value="idk random" />
+    <MESSAGE value="Changes REadME" />
+    <MESSAGE value="change to streamlit" />
+    <MESSAGE value="revert to flask lol" />
+    <option name="LAST_COMMIT_MESSAGE" value="revert to flask lol" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TopoConnect$app.coverage" NAME="app Coverage Results" MODIFIED="1730130993708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/TopoConnect$main.coverage" NAME="main Coverage Results" MODIFIED="1730124351549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/app_py$app.coverage" NAME="app Coverage Results" MODIFIED="1730138997296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/app_py$app.coverage" NAME="app Coverage Results" MODIFIED="1730141974888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/app_py$TopoConnect.coverage" NAME="TopoConnect Coverage Results" MODIFIED="1730138828729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/app_py$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1730139800098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
