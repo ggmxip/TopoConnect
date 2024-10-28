@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopoConnect Playground</title>
+    <title>CN Topology</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.20.0/cytoscape.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.20.0/cytoscape.min.js"></script>
     <style>
@@ -124,7 +124,7 @@
 
     </div>
 
-    <script src="/static/script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}">
 
 
     </script>
