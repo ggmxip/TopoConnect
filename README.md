@@ -1,5 +1,9 @@
 # TopoConnect Playground
 https://ggmxip.github.io/TopoConnect/
+![image](https://github.com/user-attachments/assets/aafe73b6-68af-4c9d-8150-90acdb2180b1)
+![image](https://github.com/user-attachments/assets/9e29b0c0-3e45-4e06-bf3c-95b147d30645)
+
+
 
 Welcome to the **TopoConnect Playground**! This interactive web application allows users to visualize and explore various network topologies using Cytoscape.js and Streamlit. Whether you're a student, educator, or network enthusiast, this tool provides a hands-on way to understand different network structures.
 
