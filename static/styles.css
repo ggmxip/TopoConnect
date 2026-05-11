@@ -1,117 +1,203 @@
+:root {
+    color-scheme: light;
+    --background: #f5f7fb;
+    --surface: #ffffff;
+    --surface-strong: #eef2f7;
+    --text: #172033;
+    --muted: #64748b;
+    --border: #d8dee8;
+    --accent: #2563eb;
+    --accent-strong: #1d4ed8;
+    --focus: #f59e0b;
+    --shadow: 0 18px 45px rgba(23, 32, 51, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: white;
-    color: black;
-    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.dark-mode {
-    background-color: #121212; /* Dark background */
-    color: white; /* Light text */
+body.dark-mode {
+    color-scheme: dark;
+    --background: #111827;
+    --surface: #182235;
+    --surface-strong: #233047;
+    --text: #f8fafc;
+    --muted: #b6c2d2;
+    --border: #334155;
+    --accent: #38bdf8;
+    --accent-strong: #0ea5e9;
+    --focus: #facc15;
+    --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
-#button-container {
-    position: fixed; /* Fix the position */
-    top: 20px; /* Distance from the top */
-    right: 20px; /* Distance from the right */
+button {
+    min-height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 0 16px;
 }
 
-.circular-btn {
-    width: 50px; /* Width of the button */
-    height: 50px; /* Height of the button */
-    border-radius: 50%; /* Make it circular */
-    border: none; /* Remove default border */
-    background-color: #007bff; /* Button color */
-    color: white; /* Text color */
-    font-size: 24px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+button:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
 }
 
-.circular-btn:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-    transform: scale(1.1); /* Slightly enlarge on hover */
+button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
 }
-/* Graph Styles */
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0 18px;
+}
+
+.eyebrow {
+    margin: 0 0 4px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1;
+}
+
+.theme-button {
+    flex: 0 0 auto;
+    background: var(--text);
+    color: var(--surface);
+}
+
+.app-shell {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto 36px;
+}
+
+.toolbar,
+.tab-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.toolbar {
+    margin-bottom: 12px;
+}
+
+.tab-container {
+    margin-bottom: 16px;
+}
+
+.tab-button.is-active {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.graph-panel {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
 #cy {
-    border: 1px solid #ccc; /* Border for the graph container */
-    width: 100%; /* Full width */
-    height: 600px; /* Fixed height */
-    background-color: #f9f9f9; /* Light background for the graph */
-}
-
-/* Node Styles */
-.node {
-    background-color: cyan; /* Default node color */
-    label: data(id); /* Display node ID */
-    text-valign: center; /* Center text vertically */
-    text-halign: center; /* Center text horizontally */
-    width: 60px; /* Node width */
-    height: 60px; /* Node height */
-    border-width: 2px; /* Border width */
-    border-color: #fff; /* White border */
-    shape: ellipse; /* Node shape */
-    opacity: 0.9; /* Slightly transparent */
-}
-
-/* Edge Styles */
-.edge {
-    width: 4px; /* Edge width */
-    line-color: #ccc; /* Edge color */
-    target-arrow-color: #ccc; /* Arrow color */
-    target-arrow-shape: triangle; /* Arrow shape */
-    opacity: 0.7; /* Slightly transparent */
-    curve-style: bezier; /* Curved edges */
-}
-
-/* Hover Effects */
-.node:hover {
-    background-color: #ffcc00; /* Change color on hover */
-    border-color: #000; /* Darker border on hover */
-}
-
-.edge:hover {
-    line-color: #ffcc00; /* Change edge color on hover */
-    target-arrow-color: #ffcc00; /* Change arrow color on hover */
-}
-
-/* Dark Mode Styles */
-.dark-mode #cy {
-    background-color: #1e1e1e; /* Dark background for the graph */
-}
-
-.dark-mode .node {
-    background-color: #4a90e2; /* Softer blue for nodes */
-    border-color: #fff; /* White border for contrast */
-}
-
-.dark-mode .edge {
-    line-color: #666; /* Softer gray for edges */
-    target-arrow-color: #666; /* Arrow color in dark mode */
-}
-
-/* Grid Background in Dark Mode */
-.dark-mode .grid {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-}
-/* Graph Styles */
-#cy {
-    border: 1px solid #ccc; /* Border for the graph container */
-    width: 100%; /* Full width */
-    height: 600px; /* Fixed height */
-    background-color: #f9f9f9; /* Light background for the graph */
-    position: relative; /* Position relative for absolute children */
-}
-
-/* Grid Background */
-.grid {
-    position: absolute; /* Position absolute to overlay on the graph */
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
-    background-image: linear-gradient(to right, #e0e0e0 1px, transparent 1px),
-                      linear-gradient(to bottom, #e0e0e0 1px, transparent 1px);
-    background-size: 20px 20px; /* Size of the grid cells */
-    pointer-events: none; /* Allow clicks to pass through to the graph */
+    height: min(68vh, 640px);
+    min-height: 420px;
+    background-color: var(--surface);
+    background-image:
+        linear-gradient(to right, color-mix(in srgb, var(--border) 68%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in srgb, var(--border) 68%, transparent) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.58);
+}
+
+.modal.is-open {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: min(520px, 100%);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    padding: 28px;
+}
+
+.modal-content h2 {
+    margin: 0 48px 14px 0;
+}
+
+.modal-content ul {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    padding: 0;
+    font-size: 1.4rem;
+}
+
+@media (max-width: 680px) {
+    .app-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    button {
+        flex: 1 1 130px;
+    }
+
+    .theme-button {
+        flex: 0 0 auto;
+    }
+
+    #cy {
+        min-height: 360px;
+        height: 62vh;
+    }
 }

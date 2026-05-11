@@ -1,492 +1,331 @@
+const NODE_COUNT = 5;
+
+const topologyLayouts = {
+    playground: { name: 'grid', rows: 1, padding: 70 },
+    star: { name: 'circle', padding: 70 },
+    ring: { name: 'circle', padding: 70 },
+    mesh: { name: 'circle', padding: 70 },
+    bus: { name: 'grid', rows: 1, padding: 70 },
+    tree: { name: 'breadthfirst', directed: true, padding: 70, spacingFactor: 1.35 },
+};
+
 const cy = cytoscape({
     container: document.getElementById('cy'),
-    elements: [
-        { data: { id: 'a', color: 'blue' } },
-        { data: { id: 'b', color: 'blue' } },
-    ],
+    elements: [],
     style: [
         {
             selector: 'node',
             style: {
                 'background-color': 'data(color)',
-                'label': 'data(id)',
-                'color': '#ffffff', // Change text color to white
-                'text-valign': 'center',
+                'border-color': '#ffffff',
+                'border-width': 2,
+                'color': '#ffffff',
+                'font-size': 13,
+                'font-weight': 700,
+                'height': 48,
+                'label': 'data(label)',
                 'text-halign': 'center',
-                'width': '40px',
-                'height': '40px',
-            }
+                'text-valign': 'center',
+                'width': 48,
+            },
+        },
+        {
+            selector: 'node.selected',
+            style: {
+                'background-color': '#d64550',
+                'border-color': '#f6d365',
+                'border-width': 4,
+            },
         },
         {
             selector: 'edge',
             style: {
-                'width': 3,
-                'line-color': '#ccc',
-                'target-arrow-color': '#ccc',
+                'curve-style': 'bezier',
+                'line-color': '#73808c',
+                'target-arrow-color': '#73808c',
                 'target-arrow-shape': 'triangle',
-            }
-        }
+                'width': 3,
+            },
+        },
     ],
-    layout: {
-        name: 'grid',
-        rows: 1
-    }
-});
-// Function to generate a random color
-
-function getRandomColor() {
-
-    const letters = '0123456789ABCDEF';
-
-    let color = '#';
-
-    for (let i = 0; i < 6; i++) {
-
-        color += letters[Math.floor(Math.random() * 16)];
-
-    }
-
-    return color;
-
-}
-
-
-// Topology functions
-
-// Function to create the default playground topology
-
-function createPlaygroundTopology() {
-
-    cy.elements().remove(); // Clear existing elements
-
-    const nodes = [];
-
-    const edges = [];
-
-
-    // Create a set of nodes
-
-    for (let i = 1; i <= 2; i++) {
-
-        nodes.push({ data: { id: 'node' + i, color: getRandomColor() } });
-
-    }
-
-    cy.add(nodes);
-
-    cy.add(edges);
-
-    cy.fit(); // Fit the view to include all nodes
-
-}
-
-
-
-function createStarTopology() {
-
-    cy.elements().remove(); // Clear existing elements
-
-    const centerNode = { data: { id: 'center', color: 'blue' } };
-
-    const nodes = [centerNode];
-
-    const edges = [];
-
-
-    for (let i = 1; i <= 5; i++) {
-
-        const node = { data: { id: 'node' + i, color: getRandomColor() } };
-
-        nodes.push (node);
-
-        edges.push({ data: { id: 'edge' + i, source: 'center', target: 'node' + i } });
-
-    }
-
-
-    cy.add(nodes);
-
-    cy.add(edges);
-
-    cy.fit(); // Fit the view to include all nodes
-
-}
-
-
-function createRingTopology() {
-
-    cy.elements().remove(); // Clear existing elements
-
-    const nodes = [];
-
-    const edges = [];
-
-
-    for (let i = 1; i <= 5; i++) {
-
-        nodes.push({ data: { id: 'node' + i, color: getRandomColor() } });
-
-    }
-
-
-    for (let i = 1; i <= 5; i++) {
-
-        edges.push({ data: { id: 'edge' + i, source: 'node' + i, target: 'node' + ((i % 5) + 1) } });
-
-    }
-
-
-    cy.add(nodes);
-
-    cy.add(edges);
-
-    cy.fit(); // Fit the view to include all nodes
-
-}
-
-
-function createMeshTopology() {
-
-    cy.elements().remove(); // Clear existing elements
-
-    const nodes = [];
-
-    const edges = [];
-
-
-    for (let i = 1; i <= 5; i++) {
-
-        nodes.push({ data: { id: 'node' + i, color: getRandomColor() } });
-
-    }
-
-
-    for (let i = 1; i <= 5; i++) {
-
-        for (let j = i + 1; j <= 5; j++) {
-
-            edges.push({ data: { id: 'edge' + i + '-' + j, source: 'node' + i, target: 'node' + j } });
-
-        }
-
-    }
-
-
-    cy.add(nodes);
-
-    cy.add(edges);
-
-    cy.fit(); // Fit the view to include all nodes
-
-}
-
-
-function createBusTopology() {
-
-    cy.elements().remove(); // Clear existing elements
-
-    const nodes = [];
-
-    const edges = [];
-
-
-    for (let i = 1; i <= 5; i++) {
-
-        nodes.push({ data: { id: 'node' + i, color: getRandomColor() } });
-
-        if (i > 1) {
-
-            edges.push({ data: { id: 'edge' + (i - 1), source: 'node' + (i - 1), target: 'node' + i } });
-
-        }
-
-    }
-
-
-    cy.add(nodes);
-
-    cy.add(edges);
-
-    cy.fit(); // Fit the view to include all nodes
-
-}
-
-
-function createTreeTopology() {
-
-    cy.elements().remove(); // Clear existing elements
-
-    const nodes = [];
-
-    const edges = [];
-
-
-    nodes.push({ data: { id: 'root', color: 'blue' } });
-
-    for (let i = 1; i <= 5; i++) {
-
-        nodes.push({ data: { id: 'node' + i, color: getRandomColor() } });
-
-        edges.push({ data: { id: 'edge' + i, source: 'root', target: 'node' + i } });
-
-    }
-
-
-    cy.add(nodes);
-
-    cy.add(edges);
-
-    cy.fit(); // Fit the view to include all nodes
-
-}
-
-
-// Event listeners for the tabs
-
-document.querySelectorAll('.tab-button').forEach(button => {
-
-    button.addEventListener('click', () => {
-
-        const topologyType = button.getAttribute('data-topology');
-
-        switch (topologyType) {
-
-             case 'playground':
-
-                createPlaygroundTopology();
-
-                break;
-
-            case 'star':
-
-                createStarTopology();
-
-                break;
-
-            case 'ring':
-
-                createRingTopology();
-
-                break;
-
-            case 'mesh':
-
-                createMeshTopology();
-
-                break;
-
-            case 'bus':
-
-                createBusTopology();
-
-                break;
-
-            case 'tree':
-
-                createTreeTopology();
-
-                break;
-
-            default:
-
-                console.error(`Unknown topology type: ${topologyType}`);
-
-        }
-
-    });
-
+    layout: topologyLayouts.playground,
 });
 
-// Function to generate a random color
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-
-
-// History stacks for undo and redo
+let selectedNode = null;
 let history = [];
 let redoStack = [];
 
-// Function to save the current state
-function saveState() {
-    const elements = cy.json().elements;
-    history.push(elements);
-    redoStack = []; // Clear redo stack on new action
+function getRandomColor() {
+    const colors = ['#2563eb', '#059669', '#d97706', '#7c3aed', '#dc2626', '#0891b2'];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
 
-// Function to restore a state
+function node(id, color = getRandomColor()) {
+    return { data: { id, label: id, color } };
+}
+
+function edge(source, target) {
+    return {
+        data: {
+            id: `${source}-${target}`,
+            source,
+            target,
+        },
+    };
+}
+
+function snapshotElements() {
+    return cy.elements().map((element) => element.json());
+}
+
+function saveState() {
+    history.push(snapshotElements());
+    redoStack = [];
+}
+
 function restoreState(elements) {
+    selectedNode = null;
     cy.elements().remove();
     cy.add(elements);
+    cy.layout({ name: 'preset' }).run();
 }
 
-// Function to add a new edge interactively
-let selectedNode = null;
+function runLayout(type) {
+    cy.layout(topologyLayouts[type] || topologyLayouts.playground).run();
+    cy.fit(undefined, 50);
+}
 
-cy.on('tap', 'node', function(evt) {
-    const node = evt.target;
-
-    if (selectedNode) {
-        // If a node is already selected, create an edge
-        saveState(); // Save state before action
-        cy.add({
-            group: 'edges',
-            data: {
-                id: selectedNode.id() + '-' + node.id(),
-                source: selectedNode.id(),
-                target: node.id()
-            }
-        });
-        selectedNode = null; // Reset selection
-    } else {
-        // Select the node
-        selectedNode = node;
-        node.addClass('selected'); // Optional: Add a class for styling
+function loadTopology(type, shouldSave = true) {
+    if (shouldSave) {
+        saveState();
     }
-});
 
-// Optional: Style for selected nodes
-cy.style()
-    .selector('.selected')
-    .style({
-        'background-color': 'red',
-        'border-width': '2px',
-        'border-color': 'yellow'
-    })
-    .update();
+    selectedNode = null;
+    cy.elements().remove();
+    cy.add(createTopology(type));
+    runLayout(type);
+    setActiveTab(type);
+}
 
-// Add Node Button
-document.getElementById('addNodeBtn').addEventListener('click', function() {
-    const newNodeId = 'n' + (cy.nodes().length + 1);
-    saveState(); // Save state before action
-    cy.add({
-        group: 'nodes',
-        data: { id: newNodeId, color: getRandomColor() }
+function createTopology(type) {
+    switch (type) {
+        case 'star':
+            return createStarTopology();
+        case 'ring':
+            return createRingTopology();
+        case 'mesh':
+            return createMeshTopology();
+        case 'bus':
+            return createBusTopology();
+        case 'tree':
+            return createTreeTopology();
+        case 'playground':
+        default:
+            return [node('node1', '#2563eb'), node('node2', '#059669')];
+    }
+}
+
+function createStarTopology() {
+    const elements = [node('center', '#2563eb')];
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        const id = `node${i}`;
+        elements.push(node(id), edge('center', id));
+    }
+
+    return elements;
+}
+
+function createRingTopology() {
+    const elements = [];
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        elements.push(node(`node${i}`));
+    }
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        elements.push(edge(`node${i}`, `node${(i % NODE_COUNT) + 1}`));
+    }
+
+    return elements;
+}
+
+function createMeshTopology() {
+    const elements = [];
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        elements.push(node(`node${i}`));
+    }
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        for (let j = i + 1; j <= NODE_COUNT; j += 1) {
+            elements.push(edge(`node${i}`, `node${j}`));
+        }
+    }
+
+    return elements;
+}
+
+function createBusTopology() {
+    const elements = [];
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        const id = `node${i}`;
+        elements.push(node(id));
+
+        if (i > 1) {
+            elements.push(edge(`node${i - 1}`, id));
+        }
+    }
+
+    return elements;
+}
+
+function createTreeTopology() {
+    const elements = [node('root', '#2563eb')];
+
+    for (let i = 1; i <= NODE_COUNT; i += 1) {
+        const id = `node${i}`;
+        elements.push(node(id), edge('root', id));
+    }
+
+    return elements;
+}
+
+function setActiveTab(type) {
+    document.querySelectorAll('.tab-button').forEach((button) => {
+        button.classList.toggle('is-active', button.dataset.topology === type);
     });
-});
+}
 
-// Delete Node Button
-document.getElementById('deleteNodeBtn').addEventListener('click', function() {
+function clearSelection() {
     if (selectedNode) {
-        saveState(); // Save state before action
-        cy.remove(selectedNode);
+        selectedNode.removeClass('selected');
         selectedNode = null;
     }
-});
-// Fit to View Button
-
-document.getElementById('fitToViewBtn').addEventListener('click', function() {
-
-    cy.fit(); // Fit the view to include all nodes
-
-});
-// Reset Button
-document.getElementById('resetBtn').addEventListener('click', function() {
-    saveState(); // Save state before action
-    cy.elements().remove(); // Remove all existing elements
-    cy.add([
-        { data: { id: 'a', color: 'blue' } },
-        { data: { id: 'b', color: 'red' } },
-    ]); // Add default nodes
-
-    // Center the view on the newly added nodes
-    cy.center(); // Center the graph view
-});
-
-// Undo Button
-document.getElementById('undoBtn').addEventListener('click', function() {
-    if (history.length > 0) {
-        const lastState = history.pop();
-        redoStack.push(cy.json().elements); // Save current state to redo stack
-        restoreState(lastState);
-    }
-});
-// Redo Button
-
-document.getElementById('redoBtn').addEventListener('click', function() {
-
-    if (redoStack.length > 0) {
-
-        const nextState = redoStack.pop();
-
-        saveState(); // Save current state before redo
-
-        restoreState(nextState);
-
-    }
-
-});
-
-// Help Button
-document.getElementById('helpBtn').addEventListener('click', function() {
-    document.getElementById('helpModal').style.display = 'block'; // Show the modal
-});
-
-// Close Modal
-document.querySelector('.close').addEventListener('click', function() {
-    document.getElementById('helpModal').style.display = 'none'; // Hide the modal
-});
-
-// Close Modal when clicking outside of it
-window.addEventListener('click', function(event) {
-    const modal = document.getElementById('helpModal');
-    if (event.target === modal) {
-        modal.style.display = 'none'; // Hide the modal if clicked outside
-    }
-});
-
-// Dark mode toggle functionality
-const toggleThemeBtn = document.getElementById('toggleThemeBtn');
-
-toggleThemeBtn.addEventListener('click', function() {
-    document.body.classList.toggle('dark-mode'); // Toggle the dark-mode class on the body
-});
-
-cy.add({
-    group: 'nodes',
-    data: { id: newNodeId, color: getRandomColor() },
-    classes: 'node' // Add the 'node' class
-});
-
-cy.add({
-    group: 'edges',
-    data: {
-        id: selectedNode.id() + '-' + node.id(),
-        source: selectedNode.id(),
-        target: node.id()
-    },
-    classes: 'edge' // Add the 'edge' class
-});
-
-
-// Function to smoothly zoom out
-
-function zoomOut() {
-
-    const currentZoom = cy.zoom();
-
-    const newZoom = currentZoom * 0.8; // Adjust the zoom factor as needed
-
-
-    cy.animate({
-
-        zoom: newZoom,
-
-        position: cy.center() // Center the graph during zoom
-
-    }, {
-
-        duration: 500 // Duration of the zoom animation in milliseconds
-
-    });
-
 }
 
+function nextNodeId() {
+    let index = cy.nodes().length + 1;
+    let id = `node${index}`;
 
-//
+    while (cy.getElementById(id).length) {
+        index += 1;
+        id = `node${index}`;
+    }
+
+    return id;
+}
+
+function addNode() {
+    saveState();
+
+    const id = nextNodeId();
+    const extent = cy.extent();
+    cy.add({
+        group: 'nodes',
+        data: { id, label: id, color: getRandomColor() },
+        position: {
+            x: (extent.x1 + extent.x2) / 2,
+            y: (extent.y1 + extent.y2) / 2,
+        },
+    });
+}
+
+function connectNodes(source, target) {
+    if (source.id() === target.id()) {
+        clearSelection();
+        return;
+    }
+
+    const edgeId = `${source.id()}-${target.id()}`;
+    const reverseEdgeId = `${target.id()}-${source.id()}`;
+
+    if (cy.getElementById(edgeId).length || cy.getElementById(reverseEdgeId).length) {
+        clearSelection();
+        return;
+    }
+
+    saveState();
+    cy.add(edge(source.id(), target.id()));
+    clearSelection();
+}
+
+document.querySelectorAll('.tab-button').forEach((button) => {
+    button.addEventListener('click', () => loadTopology(button.dataset.topology));
+});
+
+cy.on('tap', 'node', (event) => {
+    const tappedNode = event.target;
+
+    if (selectedNode) {
+        connectNodes(selectedNode, tappedNode);
+        return;
+    }
+
+    selectedNode = tappedNode;
+    selectedNode.addClass('selected');
+});
+
+cy.on('tap', (event) => {
+    if (event.target === cy) {
+        clearSelection();
+    }
+});
+
+document.getElementById('addNodeBtn').addEventListener('click', addNode);
+
+document.getElementById('deleteNodeBtn').addEventListener('click', () => {
+    if (!selectedNode) {
+        return;
+    }
+
+    saveState();
+    cy.remove(selectedNode);
+    selectedNode = null;
+});
+
+document.getElementById('fitToViewBtn').addEventListener('click', () => cy.fit(undefined, 50));
+
+document.getElementById('resetBtn').addEventListener('click', () => loadTopology('playground'));
+
+document.getElementById('undoBtn').addEventListener('click', () => {
+    if (!history.length) {
+        return;
+    }
+
+    redoStack.push(snapshotElements());
+    restoreState(history.pop());
+});
+
+document.getElementById('redoBtn').addEventListener('click', () => {
+    if (!redoStack.length) {
+        return;
+    }
+
+    history.push(snapshotElements());
+    restoreState(redoStack.pop());
+});
+
+const modal = document.getElementById('helpModal');
+document.getElementById('helpBtn').addEventListener('click', () => {
+    modal.classList.add('is-open');
+});
+
+document.querySelector('.close').addEventListener('click', () => {
+    modal.classList.remove('is-open');
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.classList.remove('is-open');
+    }
+});
+
+document.getElementById('toggleThemeBtn').addEventListener('click', (event) => {
+    const isDark = document.body.classList.toggle('dark-mode');
+    event.currentTarget.textContent = isDark ? 'Light' : 'Dark';
+    event.currentTarget.setAttribute('aria-pressed', String(isDark));
+});
+
+loadTopology('playground', false);

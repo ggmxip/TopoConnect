@@ -1,31 +1,35 @@
 # TopoConnect Playground
-https://ggmxip.github.io/TopoConnect/
-![image](https://github.com/user-attachments/assets/aafe73b6-68af-4c9d-8150-90acdb2180b1)
-![image](https://github.com/user-attachments/assets/9e29b0c0-3e45-4e06-bf3c-95b147d30645)
 
+[Live demo](https://ggmxip.github.io/TopoConnect/)
 
-
-Welcome to the **TopoConnect Playground**! This interactive web application allows users to visualize and explore various network topologies using Cytoscape.js and Streamlit. Whether you're a student, educator, or network enthusiast, this tool provides a hands-on way to understand different network structures.
+TopoConnect is an interactive network topology playground built with Flask, Cytoscape.js, and GitHub Pages. It lets users load common computer network layouts and edit them directly in the browser.
 
 ## Features
 
-- **Interactive Visualization**: Explore different network topologies including Star, Ring, Mesh, Bus, Tree, and a Playground mode.
-- **Dynamic Updates**: Select different topologies from a dropdown menu to see real-time updates in the graph.
-- **User -Friendly Interface**: Built with Streamlit for an intuitive user experience.
+- Explore Playground, Star, Ring, Mesh, Bus, and Tree topologies.
+- Add, delete, and connect nodes interactively.
+- Undo, redo, reset, and fit the graph to the current view.
+- Toggle between light and dark themes.
 
-## Technologies Used
+## Technologies
 
-- [Flask](https://flask.palletsprojects.com/en/stable/) - A Python library for creating web applications.
-- [Cytoscape.js](https://js.cytoscape.org/) - A JavaScript library for graph theory modeling.
+- [Flask](https://flask.palletsprojects.com/) for local development.
+- [Cytoscape.js](https://js.cytoscape.org/) for graph rendering.
+- GitHub Pages for static deployment.
 
-## Installation
+## Run Locally
 
-To run this application locally, follow these steps:
+```bash
+git clone https://github.com/ggmxip/TopoConnect.git
+cd TopoConnect
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/ggmxip/TopoConnect.git
-   cd TopoConnect
+Then open `http://127.0.0.1:5000`.
 
+## GitHub Pages Deployment
 
-    
+The workflow in `.github/workflows/jekyll-gh-pages.yml` publishes `templates/index.html` and the `static/` assets to GitHub Pages whenever changes are pushed to `master`.
